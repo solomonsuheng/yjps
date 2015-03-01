@@ -38,6 +38,8 @@ public class MySQLDBConn {
 		}
 	}
 
+	// 查询所有新闻信息
+
 	// 测试函数
 	public static void main(String[] args) throws SQLException {
 		DBTest conn = new DBTest();

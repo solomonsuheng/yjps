@@ -11,7 +11,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>易居</title>
+<title>易居|加入我们</title>
 
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
