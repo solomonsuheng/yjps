@@ -18,28 +18,47 @@
 
 <!-- Custom styles for this template -->
 <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+
+<script>
+	function bodyload() {
+		//调用后台获取信息
+		$.get("newsServlet", function(data, status) {
+			var dataNews = eval('(' + data + ')');
+			for (var i = 0; i < dataNews.length; i++) {
+
+				if (dataNews[i].ntype == 1) {
+					$("#newsInfo").append(
+							"<tr><td>公司新闻:" + dataNews[i].ntitle + "</td><td>"
+									+ dataNews[i].ncontent
+									+ "</td><td>add</td><td>delete</td></tr>");
+				} else {
+					$("#newsInfo").append(
+							"<tr><td>市场动态:" + dataNews[i].ntitle + "</td><td>"
+									+ dataNews[i].ncontent
+									+ "</td><td>add</td><td>delete</td></tr>");
+				}
+			}
+		});
+	}
+</script>
 </head>
 
-<body>
+<body onload="bodyload()">
 
 	<!-- Fixed navbar -->
-
 	<jsp:include page="../includePage/header.jsp"></jsp:include>
 	<!-- Begin page content -->
+	<hr />
 	<div class="container">
-		<div class="page-header">
-			<h1>Sticky footer with fixed navbar</h1>
+		<div class="panel panel-default">
+			<table class="table" id="newsInfo">
+				<tr>
+					<td>标题</td>
+					<td>内容</td>
+					<td>操作</td>
+				</tr>
+			</table>
 		</div>
-		<p class="lead">
-			logined.
-			<code>padding-top: 60px;</code>
-			on the
-			<code>body &gt; .container</code>
-			.
-		</p>
-		<p>
-			Back to <a href="#">the default sticky footer</a> minus the navbar.
-		</p>
 	</div>
 
 	<jsp:include page="../includePage/footer.jsp"></jsp:include>

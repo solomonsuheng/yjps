@@ -19,7 +19,6 @@
 <script>
 	$(document).ready(function() {
 		$("#submit").click(function() {
-			var data = $("#uname").val() + " " + $("#upwd").val()
 			$.post("companyLoginServlet", {
 				uname : $("#uname").val(),
 				upwd : $("#upwd").val()
