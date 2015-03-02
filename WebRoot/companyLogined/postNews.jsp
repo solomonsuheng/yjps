@@ -23,12 +23,28 @@
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 
 <link href="../css/dashboard.css" rel="stylesheet">
-<script type="text/javascript">
-	
+<script src="../js/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#submit").click(function() {
+			$.post("http://localhost:8080/yjps/newsServlet", {
+				title : $("#newsTitle").val(),
+				content : $("#newsContent").val()
+			}, function(data, status) {
+				if (data == "ok") {
+					$("#status").text("发布成功");
+					$("#newsTitle").val("");
+					$("#newsContent").val("");
+				} else {
+					$("#status").text("发送失败");
+				}
+			});
+		});
+	});
 </script>
 </head>
 
-<body onload="bodyLoad()">
+<body>
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<div class="container-fluid">
@@ -37,6 +53,7 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h1 class="page-header">发布新闻</h1>
 				<div class="form-group">
+					<div id="status"></div>
 					<input type="text" class="form-control" id="newsTitle"
 						placeholder="新闻标题">
 				</div>
@@ -46,14 +63,13 @@
 				</div>
 				<p></p>
 
-				<div><button class="btn btn-lg btn-primary btn-block" id="submit">发布新闻</button></div>
+				<div>
+					<button class="btn btn-lg btn-primary btn-block" id="submit">发布新闻</button>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 </body>

@@ -65,6 +65,27 @@ public class NewsServlet extends HttpServlet {
 		out.close();
 	}
 
+	// 用于存储发布的信息
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		if (title == null || content == null || title.equals("")
+				|| content.equals("")) {
+			out.write("no");
+		} else {
+			if (this.dao.postNews(title, content, 1)) {
+				out.write("ok");
+			} else {
+				out.write("no");
+			}
+		}
+		out.close();
+	}
+
 	/**
 	 * Initialization of the servlet. <br>
 	 *

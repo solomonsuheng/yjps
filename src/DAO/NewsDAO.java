@@ -38,6 +38,31 @@ public class NewsDAO {
 		return list;
 	}
 
+	// 发布新闻
+	public boolean postNews(String title, String content, int type) {
+		boolean flag = false;
+		long date = System.currentTimeMillis();
+		String sql = "insert into news (ntitle,ndate,ncontent,ntype,npublish) values('"
+				+ title
+				+ "','"
+				+ date
+				+ "','"
+				+ content
+				+ "',"
+				+ type
+				+ ",'admin');";
+
+		try {
+			if (this.conn.st.executeUpdate(sql) > 0) {
+				flag = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
 	// 1为新闻，2为市场动态
 	// 根据类型获取所有新闻
 	public List<News> getNews(int type) throws SQLException {
@@ -66,6 +91,6 @@ public class NewsDAO {
 
 	public static void main(String[] args) throws SQLException {
 		NewsDAO dao = new NewsDAO();
-		System.out.println(dao.getNews(2));
+		System.out.println(dao.postNews("uu", "ok", 2));
 	}
 }
