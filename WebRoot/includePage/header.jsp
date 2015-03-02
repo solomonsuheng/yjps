@@ -26,9 +26,9 @@
 						<li><a href="#">Another action</a></li>
 						<li><a href="#">Something else here</a></li>
 						<li class="divider"></li>
-						<li class="dropdown-header">Nav header</li>
-						<li><a href="#">Separated link</a></li>
-						<li><a href="#">One more separated link</a></li>
+						<li class="dropdown-header">nav bar</li>
+						<li><a href="#">招聘信息管理</a></li>
+						<li><a href="#"></a></li>
 					</ul></li>
 			</ul>
 		</div>
