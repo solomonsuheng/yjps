@@ -16,9 +16,18 @@ public class ResumeDAO {
 		this.conn = new MySQLDBConn();
 	}
 
+	// 对传入的resume进行数据检测，判断是否为空
+	public boolean isEmpty(Resume resume) {
+		boolean flag = true;
+		return true;
+	}
+
 	// 将数据存入到数据库中
 	public boolean saveResume2DB(Resume resume) {
 		boolean flag = false;
+		if (isEmpty(resume)) {
+			return flag;
+		}
 		String sql = "insert into resume (rposition,rmoney,rname,rsex,rbirthday,ridcard,rtel) values ('"
 				+ resume.getRposition()
 				+ "','"

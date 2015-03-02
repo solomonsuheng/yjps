@@ -25,9 +25,35 @@
 <script>
 	$(document).ready(function() {
 		$("#goResume").click(function() {
-			$("#rname").val();
+			sendData();
 		});
 	});
+	function sendData() {
+		//检测数据项是否为空，若数据为空则不对数据进行提交
+		if ($("#rposition").val() == "" || $("#rmoney").val() == ""
+				|| $("#rsex").val() == "" || $("#rbirthday").val() == ""
+				|| $("#rtel").val() == "" || $("#ridcard").val() == "") {
+			$("#status").text("数据项不能为空");
+			return;
+		}
+		$.get("resumeServlet", {
+			rposition : $("#rposition").val(),
+			rmoney : $("#rmoney").val(),
+			rname : $("#rname").val(),
+			rsex : $("#rsex").val(),
+			rbirthday : $("#rbirthday").val(),
+			rtel : $("#rtel").val(),
+			ridcard : $("#ridcard").val()
+		}, function(data, status) {
+			if (data == "Ok") {
+				$(".input-group").hide();
+				$("#goResume").hide();
+				$("#status").append("<p>申请成功</p>");
+			} else {
+				$("#status").text("重新申请");
+			}
+		});
+	}
 </script>
 
 
@@ -44,6 +70,7 @@
 			<h1>简历建立</h1>
 		</div>
 		<p class="lead">
+		<div id="status"></div>
 		<div class="input-group">
 			<input type="text" class="form-control" placeholder="用户名" id="rname">
 			<input type="text" class="form-control" placeholder="职位"

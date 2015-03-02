@@ -26,6 +26,11 @@ public class Resume {
 		this.rtel = rtel;
 	}
 
+	public String toString() {
+		return this.rposition + " " + this.rmoney + " " + this.rsex + " "
+				+ this.rbirthday + " " + this.ridcard;
+	}
+
 	public String getRid() {
 		return rid;
 	}
@@ -89,6 +94,5 @@ public class Resume {
 	public void setRtel(String rtel) {
 		this.rtel = rtel;
 	}
-	
-	
+
 }
