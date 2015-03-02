@@ -9,26 +9,26 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">易居</a>
+			<a class="navbar-brand" href="http://localhost:8080/yjps/index.jsp">易居</a>
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
 				<li class="active"><a
 					href="http://localhost:8080/yjps/index.jsp">首页</a></li>
-				<li><a href="#"></a></li>
-				<li><a href="#">Contact</a></li>
+				<li><a href="#">二手房信息</a></li>
+				<li><a href="#">出租房信息</a></li>
+				<li><a href="#">房产咨询</a></li>
+				<li><a href="#">房产经纪人</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">更多 <span
 						class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
+						<li><a href="http://localhost:8080/yjps/register.jsp">用户/经纪人注册</a></li>
+						<li><a href="http://localhost:8080/yjps/login.jsp">用户/经纪人登录</a></li>
 						<li class="divider"></li>
-						<li class="dropdown-header">nav bar</li>
-						<li><a href="#">招聘信息管理</a></li>
-						<li><a href="#"></a></li>
+						<li class="dropdown-header"></li>
+						<li><a href="clogin.jsp">信息管理</a></li>
 					</ul></li>
 			</ul>
 		</div>

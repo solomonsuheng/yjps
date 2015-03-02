@@ -39,7 +39,7 @@
 
 	<div class="container">
 		<div class="form-signin">
-			<h2 class="form-signin-heading">易居用户登录</h2>
+			<h2 class="form-signin-heading">易居用户注册</h2>
 			<label for="inputEmail" class="sr-only">用户名</label> <input
 				type="text" id="uname" class="form-control" placeholder="用户名"
 				required="" autofocus=""> <label for="inputPassword"
