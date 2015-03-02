@@ -14,14 +14,27 @@
 <title>登录</title>
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
-
 <link href="css/signin.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#submit").click(function() {
+			var data = $("#uname").val() + " " + $("#upwd").val()
+			$.post("companyLoginServlet", {
+				uname : $("#uname").val(),
+				upwd : $("#upwd").val()
+			}, function(data, status) {
+				console.log(data);
+			});
+		});
+	});
+</script>
 </head>
 
 <body>
 
 	<div class="container">
-		<form class="form-signin">
+		<div class="form-signin">
 			<h2 class="form-signin-heading">易居公司信息管理</h2>
 			<label for="inputEmail" class="sr-only">用户名</label> <input
 				type="text" id="uname" class="form-control" placeholder="用户名"
@@ -29,13 +42,13 @@
 				class="sr-only">密码</label> <input type="password" id="upwd"
 				class="form-control" placeholder="密码" required="">
 			<div class="checkbox">
-				<label> <input type="checkbox" value="remember-me">
-					记住我
+				<label> <input type="checkbox" value="remember-me"
+					id="checkit"> 记住我
 				</label>
 			</div>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
-				in</button>
-		</form>
+			<button class="btn btn-lg btn-primary btn-block" onclick="return"
+				id="submit">登录</button>
+		</div>
 
 	</div>
 </body>

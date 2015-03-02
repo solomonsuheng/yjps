@@ -8,12 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.ResumeDAO;
-import VO.Resume;
+import DAO.UserDAO;
 
-public class ResumeServlet extends HttpServlet {
-	private ResumeDAO dao = null;
-	private Resume resume = null;
+public class CompanyLoginServlet extends HttpServlet {
+	private UserDAO dao = null;
 
 	/**
 	 * Destruction of the servlet. <br>
@@ -24,9 +22,10 @@ public class ResumeServlet extends HttpServlet {
 	}
 
 	/**
-	 * The doGet method of the servlet. <br>
+	 * The doPost method of the servlet. <br>
 	 *
-	 * This method is called when a form has its tag value method equals to get.
+	 * This method is called when a form has its tag value method equals to
+	 * post.
 	 * 
 	 * @param request
 	 *            the request send by the client to the server
@@ -37,31 +36,18 @@ public class ResumeServlet extends HttpServlet {
 	 * @throws IOException
 	 *             if an error occurred
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String rid = "0";
-		String rposition = request.getParameter("rposition");
-		String rmoney = request.getParameter("rmoney");
-		String rname = request.getParameter("rname");
-		String rsex = request.getParameter("rsex");
-		String rbirthday = request.getParameter("rbirthday");
-		String rtel = request.getParameter("rtel");
-		String ridcard = request.getParameter("ridcard");
-
-		resume = new Resume(rid, rposition, rmoney, rname, rsex, rbirthday,
-				ridcard, rtel);
-		// System.out.println(resume.toString());
-		if (this.dao.saveResume2DB(resume)) {
-			// 存储数据成功
-			out.write("Ok");
+		String uname = request.getParameter("uname");
+		String upwd = request.getParameter("upwd");
+		if (this.dao.isUserExist(uname, upwd)) {
+			out.write("ok");
 		} else {
-			// 存储数据失败
-			out.write("No");
+			out.write("no");
 		}
-
 		out.close();
 	}
 
@@ -72,7 +58,7 @@ public class ResumeServlet extends HttpServlet {
 	 *             if an error occurs
 	 */
 	public void init() throws ServletException {
-		this.dao = new ResumeDAO();
+		this.dao = new UserDAO();
 	}
 
 }

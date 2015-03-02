@@ -48,7 +48,7 @@
 			if (data == "Ok") {
 				$(".input-group").hide();
 				$("#goResume").hide();
-				$("#status").append("<p>申请成功</p>");
+				$("#status").text("申请成功");
 			} else {
 				$("#status").text("重新申请");
 			}
