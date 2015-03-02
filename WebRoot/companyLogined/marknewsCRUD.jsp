@@ -24,35 +24,40 @@
 
 <!-- Custom styles for this template -->
 <link href="../css/dashboard.css" rel="stylesheet">
+<script type="text/javascript">
+	//当页面加载时调用函数
+	function bodyLoad() {
+		//调用后台获取信息
+		$
+				.get(
+						"http://localhost:8080/yjps/newsServlet",
+						function(data, status) {
+							var dataNews = eval('(' + data + ')');
+							for (var i = 0; i < dataNews.length; i++) {
 
+								if (dataNews[i].ntype == 1) {
+
+								} else {
+									$("#newsInfo")
+											.append(
+													"<tr><td>"
+															+ dataNews[i].ntitle
+															+ "</td><td>"
+															+ dataNews[i].ncontent
+															+ "</td><td><a class=\"btn btn-primary\" href=\""+dataNews[i].nid+"\"   role=\"button\">删除</a></td></tr>");
+								}
+							}
+						});
+	}
+</script>
 </head>
 
-<body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-				aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="">易居公司信息管理</a>
-		</div>
-	</div>
-	</nav>
+<body onload="bodyLoad()">
+	<jsp:include page="header.jsp"></jsp:include>
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-3 col-md-2 sidebar">
-				<ul class="nav nav-sidebar">
-					<li><a
-						href="http://localhost:8080/yjps/companyLogined/logined.jsp#">招聘信息</a></li>
-					<li><a href="newsCRUD.jsp">新闻信息</a></li>
-					<li class="active"><a href="marknewsCRUD.jsp">市场动态</a></li>
-				</ul>
-			</div>
+			<jsp:include page="content.jsp"></jsp:include>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h1 class="page-header">市场信息管理</h1>
 
@@ -60,21 +65,12 @@
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>#</th>
-								<th>Header</th>
-								<th>Header</th>
-								<th>Header</th>
-								<th>Header</th>
+								<th>标题</th>
+								<th>内容</th>
+								<th>操作</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>1,003</td>
-								<td>libero</td>
-								<td>Sed</td>
-								<td>cursus</td>
-								<td>ante</td>
-							</tr>
+						<tbody id="newsInfo">
 						</tbody>
 					</table>
 				</div>

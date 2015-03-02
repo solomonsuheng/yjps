@@ -24,29 +24,7 @@
 
 <link href="../css/dashboard.css" rel="stylesheet">
 <script type="text/javascript">
-	//当页面加载时调用函数
-	function bodyLoad() {
-		//调用后台获取信息
-		$
-				.get(
-						"http://localhost:8080/yjps/newsServlet",
-						function(data, status) {
-							var dataNews = eval('(' + data + ')');
-							for (var i = 0; i < dataNews.length; i++) {
-								if (dataNews[i].ntype == 1) {
-									$("#newsInfo")
-											.append(
-													"<tr><td>"
-															+ dataNews[i].ntitle
-															+ "</td><td>"
-															+ dataNews[i].ncontent
-															+ "</td><td><a class=\"btn btn-primary\" href=\""+dataNews[i].nid+"\"   role=\"button\">删除</a></td></tr>");
-								} else {
-
-								}
-							}
-						});
-	}
+	
 </script>
 </head>
 
@@ -57,21 +35,18 @@
 		<div class="row">
 			<jsp:include page="content.jsp"></jsp:include>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h1 class="page-header">新闻信息管理</h1>
-
-				<div class="table-responsive">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>标题</th>
-								<th>内容</th>
-								<th>操作</th>
-							</tr>
-						</thead>
-						<tbody id="newsInfo">
-						</tbody>
-					</table>
+				<h1 class="page-header">发布新闻</h1>
+				<div class="form-group">
+					<input type="text" class="form-control" id="newsTitle"
+						placeholder="新闻标题">
 				</div>
+				<div>
+					<input type="text" class="form-control" id="newsContent"
+						placeholder="新闻内容">
+				</div>
+				<p></p>
+
+				<div><button class="btn btn-lg btn-primary btn-block" id="submit">发布新闻</button></div>
 			</div>
 		</div>
 	</div>
