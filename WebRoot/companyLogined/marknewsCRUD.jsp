@@ -47,14 +47,14 @@
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li class="active"><a
-						href="http://localhost:8080/yjps/companyLogined/logined.jsp">招聘信息</a></li>
+					<li><a
+						href="http://localhost:8080/yjps/companyLogined/logined.jsp#">招聘信息</a></li>
 					<li><a href="newsCRUD.jsp">新闻信息</a></li>
-					<li><a href="marknewsCRUD.jsp">市场动态</a></li>
+					<li class="active"><a href="marknewsCRUD.jsp">市场动态</a></li>
 				</ul>
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h1 class="page-header">招聘信息管理</h1>
+				<h1 class="page-header">市场信息管理</h1>
 
 				<div class="table-responsive">
 					<table class="table table-striped">
@@ -69,11 +69,11 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>1,015</td>
-								<td>sodales</td>
-								<td>ligula</td>
-								<td>in</td>
+								<td>1,003</td>
 								<td>libero</td>
+								<td>Sed</td>
+								<td>cursus</td>
+								<td>ante</td>
 							</tr>
 						</tbody>
 					</table>
@@ -82,6 +82,9 @@
 		</div>
 	</div>
 
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 </body>
