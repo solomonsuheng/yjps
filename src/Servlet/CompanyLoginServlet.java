@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.UserDAO;
+import VO.Cuser;
 
 public class CompanyLoginServlet extends HttpServlet {
 	private UserDAO dao = null;
@@ -44,6 +45,9 @@ public class CompanyLoginServlet extends HttpServlet {
 		String uname = request.getParameter("uname");
 		String upwd = request.getParameter("upwd");
 		if (this.dao.isUserExist(uname, upwd)) {
+			Cuser cuser = new Cuser("", uname, upwd);
+			// 将登陆成功的数据存入到session中
+			request.getSession().setAttribute("cuser", cuser);
 			out.write("ok");
 		} else {
 			out.write("no");

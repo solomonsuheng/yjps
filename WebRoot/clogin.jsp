@@ -24,7 +24,12 @@
 				uname : $("#uname").val(),
 				upwd : $("#upwd").val()
 			}, function(data, status) {
-				console.log(data);
+				if (data == "ok") {
+					//登录成功进行页面跳转
+					self.location = "companyLogined/logined.jsp";
+				} else {
+					//没有登录成功不进行页面跳转
+				}
 			});
 		});
 	});
