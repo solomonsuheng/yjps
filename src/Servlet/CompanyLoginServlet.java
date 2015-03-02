@@ -47,7 +47,7 @@ public class CompanyLoginServlet extends HttpServlet {
 		if (this.dao.isUserExist(uname, upwd)) {
 			Cuser cuser = new Cuser("", uname, upwd);
 			// 将登陆成功的数据存入到session中
-			request.getSession().setAttribute("cuser", cuser);
+			request.getSession().setAttribute("cuname", uname);
 			out.write("ok");
 		} else {
 			out.write("no");

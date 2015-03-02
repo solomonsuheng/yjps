@@ -30,7 +30,7 @@
 					$("#newsInfo").append(
 							"<tr><td>公司新闻:" + dataNews[i].ntitle + "</td><td>"
 									+ dataNews[i].ncontent
-									+ "</td><td>add</td><td>delete</td></tr>");
+									+ "</td><td></td><td>delete</td></tr>");
 				} else {
 					$("#newsInfo").append(
 							"<tr><td>市场动态:" + dataNews[i].ntitle + "</td><td>"
