@@ -44,7 +44,11 @@
 															+ dataNews[i].ntitle
 															+ "</td><td>"
 															+ dataNews[i].ncontent
-															+ "</td><td><a class=\"btn btn-primary\" href=\""+dataNews[i].nid+"\"   role=\"button\">删除</a></td></tr>");
+															+ "</td><td><a class=\"btn btn-primary\" href=\"http://localhost:8080/yjps/delNewsServlet?id="
+															+ dataNews[i].nid
+															+ "&type="
+															+ dataNews[i].ntype
+															+ "\"   role=\"button\">删除</a></td></tr>");
 								}
 							}
 						});

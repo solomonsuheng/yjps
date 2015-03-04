@@ -40,7 +40,11 @@
 															+ dataNews[i].ntitle
 															+ "</td><td>"
 															+ dataNews[i].ncontent
-															+ "</td><td><a class=\"btn btn-primary\" href=\""+dataNews[i].nid+"\"   role=\"button\">删除</a></td></tr>");
+															+ "</td><td><a class=\"btn btn-primary\" href=\"http://localhost:8080/yjps/delNewsServlet?id="
+															+ dataNews[i].nid
+															+ "&type="
+															+ dataNews[i].ntype
+															+ "\"   role=\"button\">删除</a></td></tr>");
 								} else {
 
 								}
@@ -76,9 +80,6 @@
 		</div>
 	</div>
 
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 </body>

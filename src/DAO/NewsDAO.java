@@ -20,6 +20,26 @@ public class NewsDAO {
 		this.conn = new MySQLDBConn();
 	}
 
+	public static void main(String[] args) throws SQLException {
+		NewsDAO dao = new NewsDAO();
+		System.out.println(dao.isDelNews("1"));
+	}
+
+	// 删除数据
+	public boolean isDelNews(String id) {
+		boolean flag = false;
+
+		String sql = "delete from news where nid = " + id;
+		try {
+			this.conn.st.executeUpdate(sql);
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
 	// 获取所有信息
 	public List<News> getAllNews() throws SQLException {
 		List<News> list = new ArrayList<News>();
@@ -89,8 +109,4 @@ public class NewsDAO {
 		return flag;
 	}
 
-	public static void main(String[] args) throws SQLException {
-		NewsDAO dao = new NewsDAO();
-		System.out.println(dao.postNews("uu", "ok", 2));
-	}
 }
