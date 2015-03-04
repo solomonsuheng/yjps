@@ -23,7 +23,7 @@ public class NewsDAO {
 	// 获取所有信息
 	public List<News> getAllNews() throws SQLException {
 		List<News> list = new ArrayList<News>();
-		String sql = "select * from news;";
+		String sql = "select * from news order by nid desc;";
 		this.conn.rs = this.conn.st.executeQuery(sql);
 		while (this.conn.rs.next()) {
 			String nid = this.conn.rs.getString("nid");
