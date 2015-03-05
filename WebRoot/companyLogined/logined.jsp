@@ -24,10 +24,30 @@
 
 <!-- Custom styles for this template -->
 <link href="../css/dashboard.css" rel="stylesheet">
+<script type="text/javascript">
+	//当页面加载时调用函数
+	function bodyLoad() {
+		//调用后台获取信息
+		$.post("http://localhost:8080/yjps/resumeServlet", function(data,
+				status) {
+			var dataNews = eval('(' + data + ')');
+			for (var i = 0; i < dataNews.length; i++) {
 
+				if (dataNews[i].ntype == 1) {
+
+				} else {
+					$("#newsInfo").append(
+							"<tr><td>" + dataNews[i].rposition + "</td><td>"
+									+ dataNews[i].rname + "</td><td>$"
+									+ dataNews[i].rmoney + "</td></tr>");
+				}
+			}
+		});
+	}
+</script>
 </head>
 
-<body>
+<body onload="bodyLoad()">
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<div class="container-fluid">
@@ -40,21 +60,12 @@
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>#</th>
-								<th>Header</th>
-								<th>Header</th>
-								<th>Header</th>
-								<th>Header</th>
+								<th>职位</th>
+								<th>姓名</th>
+								<th>要求薪资</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>1,015</td>
-								<td>sodales</td>
-								<td>ligula</td>
-								<td>in</td>
-								<td>libero</td>
-							</tr>
+						<tbody id="newsInfo">
 						</tbody>
 					</table>
 				</div>

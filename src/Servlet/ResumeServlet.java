@@ -2,11 +2,14 @@ package Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import DAO.ResumeDAO;
 import VO.Resume;
@@ -21,6 +24,19 @@ public class ResumeServlet extends HttpServlet {
 	public void destroy() {
 		super.destroy(); // Just puts "destroy" string in log
 		// Put your code here
+	}
+
+	// 获取所有的简历信息
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		List<Resume> list = this.dao.getAllResume();
+		Gson gson = new Gson();
+		gson.toJson(list);
+		out.write(gson.toJson(list));
+		out.close();
 	}
 
 	/**

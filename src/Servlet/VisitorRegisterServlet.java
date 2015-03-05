@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.NewsDAO;
+import DAO.visitorDAO;
 
-public class DelNewsServlet extends HttpServlet {
-	private NewsDAO dao = null;
+public class VisitorRegisterServlet extends HttpServlet {
+	private visitorDAO dao = null;
 
 	/**
 	 * Destruction of the servlet. <br>
@@ -22,9 +22,10 @@ public class DelNewsServlet extends HttpServlet {
 	}
 
 	/**
-	 * The doGet method of the servlet. <br>
+	 * The doPost method of the servlet. <br>
 	 *
-	 * This method is called when a form has its tag value method equals to get.
+	 * This method is called when a form has its tag value method equals to
+	 * post.
 	 * 
 	 * @param request
 	 *            the request send by the client to the server
@@ -35,21 +36,29 @@ public class DelNewsServlet extends HttpServlet {
 	 * @throws IOException
 	 *             if an error occurred
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String id = request.getParameter("id");
-		String type = request.getParameter("type");
-		if (this.dao.isDelNews(id)) {
-			// 成功删除代码
-			if (type.equals("1")) {
-				response.sendRedirect("http://localhost:8080/yjps/companyLogined/newsCRUD.jsp");
+		String uname = request.getParameter("uname");
+		String upwd1 = request.getParameter("upwd1");
+		String upwd2 = request.getParameter("upwd2");
+		// System.out.println(uname + " " + upwd1 + " " + upwd2);
+		if (upwd1 == null || upwd2 == null || upwd1.equals("")
+				|| upwd2.equals("") || !upwd1.equals(upwd2)) {
+			out.write("no");
+		} else {
+			if (this.dao.saveUser(uname, upwd1)) {
+				// 存储到数据库成功
+				// 存入到session中
+				request.getSession().setAttribute("uname", uname);
+				out.write("ok");
 			} else {
-				response.sendRedirect("http://localhost:8080/yjps/companyLogined/marknewsCRUD.jsp");
+				out.write("no");
 			}
 		}
+		out.flush();
 		out.close();
 	}
 
@@ -60,7 +69,7 @@ public class DelNewsServlet extends HttpServlet {
 	 *             if an error occurs
 	 */
 	public void init() throws ServletException {
-		this.dao = new NewsDAO();
+		this.dao = new visitorDAO();
 	}
 
 }

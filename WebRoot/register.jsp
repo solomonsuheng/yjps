@@ -19,16 +19,29 @@
 <script>
 	$(document).ready(function() {
 		$("#submit").click(function() {
-			$.post("companyLoginServlet", {
+			//点击注册按钮,判断是否为空
+			if ($("#uname").val() == "") {
+				$("#status1").text("用户名不能为空");
+				return;
+			}
+			if ($("#upwd1").val() == "") {
+				$("#status2").text("密码不能为空");
+				return;
+			}
+
+			if ($("#upwd1").val() != $("#upwd2").val()) {
+				$("#status3").text("两次密码不匹配");
+				return;
+			}
+
+			//收入检测成功发送注册请求
+			$.post("visitorRegisterServlet", {
 				uname : $("#uname").val(),
-				upwd : $("#upwd").val()
+				upwd1 : $("#upwd1").val(),
+				upwd2 : $("#upwd2").val()
 			}, function(data, status) {
-				if (data == "ok") {
-					//登录成功进行页面跳转
-					self.location = "companyLogined/logined.jsp";
-				} else {
-					//没有登录成功不进行页面跳转
-				}
+				//注册成功直接进入主页
+				self.location = "index.jsp";
 			});
 		});
 	});
@@ -38,20 +51,19 @@
 <body>
 
 	<div class="container">
+
 		<div class="form-signin">
 			<h2 class="form-signin-heading">易居用户注册</h2>
 			<label for="inputEmail" class="sr-only">用户名</label> <input
 				type="text" id="uname" class="form-control" placeholder="用户名"
-				required="" autofocus=""> <label for="inputPassword"
-				class="sr-only">密码</label> <input type="password" id="upwd"
-				class="form-control" placeholder="密码" required="">
-			<div class="checkbox">
-				<label> <input type="checkbox" value="remember-me"
-					id="checkit"> 记住我
-				</label>
-			</div>
+				required="" autofocus=""> <span id="status1"></span><label
+				for="inputPassword" class="sr-only">密码</label> <input
+				type="password" id="upwd1" class="form-control" placeholder="密码"
+				required=""> <span id="status2"></span><input
+				type="password" id="upwd2" class="form-control" placeholder="确认密码"
+				required=""><span id="status3"></span>
 			<button class="btn btn-lg btn-primary btn-block" onclick="return"
-				id="submit">登录</button>
+				id="submit">注册</button>
 		</div>
 
 	</div>
