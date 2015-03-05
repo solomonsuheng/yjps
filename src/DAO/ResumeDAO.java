@@ -1,6 +1,8 @@
 package DAO;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import DBConn.MySQLDBConn;
 import VO.Resume;
@@ -14,6 +16,35 @@ public class ResumeDAO {
 
 	public ResumeDAO() {
 		this.conn = new MySQLDBConn();
+	}
+
+	public static void main(String[] args) {
+		System.out.println((new ResumeDAO()).getAllResume());
+	}
+
+	// 从数据库中查询数据
+	public List<Resume> getAllResume() {
+		List<Resume> resumeList = new ArrayList<Resume>();
+		String sql = "select * from resume;";
+		try {
+			this.conn.rs = this.conn.st.executeQuery(sql);
+			while (this.conn.rs.next()) {
+				String rname = this.conn.rs.getString("rname");
+				String rposition = this.conn.rs.getString("rposition");
+				String rmoney = this.conn.rs.getString("rmoney");
+				String rsex = this.conn.rs.getString("rsex");
+				String rtel = this.conn.rs.getString("rtel");
+				String rid = this.conn.rs.getString("rid");
+				String ridcard = this.conn.rs.getString("ridcard");
+				String rbirthday = this.conn.rs.getString("rbirthday");
+				resumeList.add(new Resume(ridcard, rposition, rmoney, rname,
+						rsex, rbirthday, ridcard, rtel));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resumeList;
 	}
 
 	// 将数据存入到数据库中
@@ -47,13 +78,4 @@ public class ResumeDAO {
 		return flag;
 	}
 
-	// 测试函数
-	public static void main(String[] args) {
-		Resume r = new Resume("1231", "asds", "1231", "adas", "Male", "2009",
-				"1212", "123891283");
-		ResumeDAO dao = new ResumeDAO();
-		if (dao.saveResume2DB(r)) {
-			System.out.println("成功");
-		}
-	}
 }
