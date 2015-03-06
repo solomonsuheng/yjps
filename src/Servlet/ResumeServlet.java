@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import DAO.ResumeDAO;
 import VO.Resume;
 
+//上传简历
 public class ResumeServlet extends HttpServlet {
 	private ResumeDAO dao = null;
 	private Resume resume = null;

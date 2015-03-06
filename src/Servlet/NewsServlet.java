@@ -15,6 +15,7 @@ import VO.News;
 
 import com.google.gson.Gson;
 
+//获取新闻Servlet
 public class NewsServlet extends HttpServlet {
 	private List<News> list = null;
 
@@ -70,7 +71,6 @@ public class NewsServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		if (title == null || content == null || title.equals("")

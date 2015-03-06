@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DAO.visitorDAO;
 
+//游客注册servlet
 public class VisitorRegisterServlet extends HttpServlet {
 	private visitorDAO dao = null;
 
